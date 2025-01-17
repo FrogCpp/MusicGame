@@ -4,10 +4,10 @@ import inspect
 
 
 class MainScene(list):
-    def __init__(self, Width=10, Height=10):
+    def __init__(self, *Input):
         super().__init__()
-        self.SizeSettings = [Width, Height]
         self.Way = os.path.split(os.path.dirname(__file__))[0]
+        self.Input = {x:0 for x in Input}
         b = os.path.join(self.Way, 'Objects')
         for i in os.listdir(b):
             if i[:2] != '__' and i[:3] != 'S_':
@@ -15,3 +15,8 @@ class MainScene(list):
                 c = inspect.getmembers(a, inspect.isclass)
                 self.append(c[0][1]())
                 self[-1].Start()
+
+    def UpdateScene(self):
+        for i in self:
+            i.Settings(self.Input)
+            i.Update()
