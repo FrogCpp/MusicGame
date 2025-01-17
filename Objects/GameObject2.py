@@ -1,14 +1,14 @@
 from S_MonoBehaviour import S_MonoBehaviour
 
 
-class Agobject(S_MonoBehaviour):
+class AbobbaScript1(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
         self.WalkSpeed = 5
 
     def Start(self):
-        self.transform['x'] = 100
-        self.transform['y'] = 100
+        self.transform['x'] = 150
+        self.transform['y'] = 150
         self.scale[0] = 50
         self.scale[1] = 50
 

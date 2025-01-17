@@ -15,8 +15,12 @@ class MainScene(list):
                 c = inspect.getmembers(a, inspect.isclass)
                 self.append(c[0][1]())
                 self[-1].Start()
+        print(list(map(lambda x: x.transform, self)))
+
 
     def UpdateScene(self):
+        print(list(map(lambda x: x.transform, self)))
         for i in self:
+            print(self.Input)
             i.Settings(self.Input)
             i.Update()
