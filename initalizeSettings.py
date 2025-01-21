@@ -1,8 +1,8 @@
 from PyChecha import MainScene # this is a main file! ! ! ! !
 import pygame
 
-WIDTH = 360
-HEIGHT = 480
+WIDTH = 500
+HEIGHT = 500
 FPS = 30
 
 # Задаем цвета
@@ -41,7 +41,11 @@ while running:
     MyScene.UpdateScene()
     for i in MyScene:
         i = i.Draw()
-        pygame.draw.polygon(screen, color=i[1], points=i[0])
+        iR = pygame.Rect(i[0][0], i[0][1], i[0][2], i[0][3])
+        if not isinstance(i[1], str):
+            pygame.draw.rect(screen, color=i[1], rect=iR)
+        else:
+            screen.blit(source=pygame.transform.smoothscale(pygame.image.load(i[1]), (i[0][2], i[0][3])), dest=iR)
 
 
     pygame.display.flip()
