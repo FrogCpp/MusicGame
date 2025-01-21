@@ -39,13 +39,21 @@ while running:
 
 
     MyScene.UpdateScene()
-    for i in MyScene:
-        i = i.Draw()
-        iR = pygame.Rect(i[0][0], i[0][1], i[0][2], i[0][3])
-        if not isinstance(i[1], str):
-            pygame.draw.rect(screen, color=i[1], rect=iR)
+    for obj in MyScene:
+        coord, color_or_texture, *area = obj.Draw()
+        if not isinstance(color_or_texture, str):
+            pygame.draw.rect(screen, color=color_or_texture, rect=iR)
         else:
-            screen.blit(source=pygame.transform.smoothscale(pygame.image.load(i[1]), (i[0][2], i[0][3])), dest=iR)
+            if not area:
+                screen.blit(source=pygame.transform.smoothscale(pygame.image.load(color_or_texture), (coord[2], coord[3])),
+                            dest=(coord[0], coord[1]))
+            else:
+                area = area[0]
+                screen.blit(
+                    source=pygame.image.load(color_or_texture),
+                    area=pygame.Rect(area),
+                    dest=(coord[0], coord[1]),
+                    )
 
 
     pygame.display.flip()
