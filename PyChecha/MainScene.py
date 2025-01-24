@@ -15,6 +15,8 @@ class MainScene(list):
                 c = inspect.getmembers(a, inspect.isclass)
                 self.append(c[0][1]())
                 self[-1].Start()
+        for i in self:
+            i.GameObject = self
 
 
     def UpdateScene(self):

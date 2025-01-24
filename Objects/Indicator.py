@@ -8,7 +8,8 @@ class Indicator(S_MonoBehaviour):
         super().__init__()
         self.Texture = (96, 218, 12)
         self.TimeCodes = [1]
-        self.Time = {'Index': 0, 'NowTime': 0}
+        self.Time = {'Index': 0, 'NowTime': 0, 'NowIndex': 0}
+        self.Error = 10
 
     def Start(self):
         self.scale['x'] = 20
@@ -16,15 +17,15 @@ class Indicator(S_MonoBehaviour):
         self.scale['z'] = 1
         self.transform['x'] = 240
         self.transform['y'] = 10
-        for i in range(1000): self.TimeCodes.append(self.TimeCodes[-1] + random.randint(5, 20))
-        print(self.TimeCodes)
+        for i in range(1000): self.TimeCodes.append(self.TimeCodes[-1] + random.randint(1, 100) / 100)
 
     def Update(self):
-        if self.Time['NowTime'] in self.TimeCodes or self.Time['NowTime'] + 1 in self.TimeCodes or self.Time['NowTime'] - 1 in self.TimeCodes:
+        if abs(self.TimeCodes[self.Time['NowIndex']] - self.Time['NowTime']) < self.Error:
             self.Time['Index'] = 1
+            self.Time['NowIndex'] += 1
         else:
             self.Time['Index'] = 0
-        self.Time['NowTime'] += 1
+        self.Time['NowTime'] += 1/60
         if self.Time['Index'] == 1:
             self.Texture = (222, 27, 14)
         else:
