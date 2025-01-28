@@ -5,10 +5,9 @@ a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'w'
 a.close()
 
 WIDTH = 500
-HEIGHT = 500
+HEIGHT = 600
 FPS = 30
 
-# Задаем цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)

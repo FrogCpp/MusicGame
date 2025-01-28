@@ -15,9 +15,10 @@ class Indicator(S_MonoBehaviour):
         self.scale['x'] = 20
         self.scale['y'] = 20
         self.scale['z'] = 1
-        self.transform['x'] = 240
-        self.transform['y'] = 10
+        self.transform['x'] = 400
+        self.transform['y'] = 560
         for i in range(1000): self.TimeCodes.append(self.TimeCodes[-1] + random.randint(1, 100) / 100)
+        self.layer = 2
 
     def Update(self):
         if abs(self.TimeCodes[self.Time['NowIndex']] - self.Time['NowTime']) < self.Error:

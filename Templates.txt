@@ -29,3 +29,11 @@ class Indicator(S_MonoBehaviour):
             self.Texture = (222, 27, 14)
         else:
             self.Texture = (96, 218, 12)
+
+
+
+https://xzany.itch.io/kobold-warrior-2d-pixel-art
+
+https://xzany.itch.io/free-knight-2d-pixel-art
+
+https://xzany.itch.io/flying-demon-2d-pixel-art

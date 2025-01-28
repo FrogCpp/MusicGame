@@ -17,21 +17,22 @@ class Agobject(S_MonoBehaviour):
         self.feel = {'anim':'Idle', 'frame':0}
 
     def Start(self):
-        self.transform['x'] = 0
-        self.transform['y'] = 0
+        self.transform['x'] = self.WalkSpeed * 3
+        self.transform['y'] = self.WalkSpeed * 3
         self.scale['x'] = 2
         self.scale['y'] = 2
         self.scale['z'] = (self.scale['x'] + self.scale['y']) / 2
         self.AnimU()
+        self.layer = 1
 
     def Update(self):
-        if self.GameObject[2].Time['Index'] == 1:
+        if self.GameObject[-1].Time['Index'] == 1:
             self.feel['anim'] = 'Idle'
             self.AnimU()
             for i in self.Input:
                 if i == 'a' and self.Input[i]: self.transform['x'] -= self.WalkSpeed if self.transform['x'] > 32.5 else 0
-                if i == 'd' and self.Input[i]: self.transform['x'] += self.WalkSpeed if self.transform['x'] < 470 else 0
-                if i == 'w' and self.Input[i]: self.transform['y'] -= self.WalkSpeed if self.transform['y'] > -47.5 else 0
+                if i == 'd' and self.Input[i]: self.transform['x'] += self.WalkSpeed if self.transform['x'] < 437.5 else 0
+                if i == 'w' and self.Input[i]: self.transform['y'] -= self.WalkSpeed if self.transform['y'] > 0 else 0
                 if i == 's' and self.Input[i]: self.transform['y'] += self.WalkSpeed if self.transform['y'] < 390 else 0
                 if i == 3 and self.Input[i]:
                     self.feel['frame'] = 0
@@ -58,9 +59,6 @@ class Agobject(S_MonoBehaviour):
                 )
 
     def AnimU(self):
-        a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'a')
-        a.write(f'\n {self.Way}')
-        a.close()
         self.Texture = pygame.image.load(os.path.join(self.Way, self.anims[self.feel['anim']][1]))
         self.Texture = pygame.transform.scale(self.Texture, [self.Texture.get_width() * self.scale['z'],
                                                              self.Texture.get_height() * self.scale['z']])

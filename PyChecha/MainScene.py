@@ -16,8 +16,9 @@ class MainScene(list):
                     c = inspect.getmembers(a, inspect.isclass)
                     self.append(c[0][1]())
                     self[-1].Start()
+            self.sort(key=lambda x: x.layer)
             for i in self:
-                i.GameObject = self
+                i.GameObject = self.copy()
         except Exception as e:
             a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'a')
             a.write(f'\n {e}')
