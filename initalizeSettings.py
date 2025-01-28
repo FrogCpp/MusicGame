@@ -1,5 +1,8 @@
 from PyChecha import MainScene # this is a main file! ! ! ! !
 import pygame
+import os
+a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'w')
+a.close()
 
 WIDTH = 500
 HEIGHT = 500
@@ -17,7 +20,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("My Game")
 clock = pygame.time.Clock()
 MyScene = MainScene(pygame.key.name(pygame.K_w), pygame.key.name(pygame.K_a),
-                     pygame.key.name(pygame.K_s), pygame.key.name(pygame.K_d), pygame.MOUSEBUTTONDOWN)
+                     pygame.key.name(pygame.K_s), pygame.key.name(pygame.K_d), 1, 3)
 running = True
 while running:
     screen.fill(BLACK)
@@ -37,12 +40,12 @@ while running:
                 MyScene.Input[pygame.key.name(event.key)] = 0
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.type in MyScene.Input:
-                MyScene.Input[event.type] = 1
+            if event.dict['button'] in MyScene.Input:
+                MyScene.Input[event.dict['button']] = 1
 
         if event.type == pygame.MOUSEBUTTONUP:
-            if event.type - 1 in MyScene.Input:
-                MyScene.Input[event.type - 1] = 0
+            if event.dict['button'] in MyScene.Input:
+                MyScene.Input[event.dict['button']] = 0
 
     MyScene.UpdateScene()
     for obj in MyScene:

@@ -7,6 +7,7 @@ class Agobject(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
         self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame\\Assets\\FreePack\\Board.png'))
+        print(os.path.join(self.Way, 'MusicGame\\Assets\\FreePack\\Board.png'))
 
     def Start(self):
         self.scale['x'] = 500
