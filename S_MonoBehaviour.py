@@ -15,6 +15,7 @@ class S_MonoBehaviour:
         self.Input = {}
         self.Way = os.path.split(os.path.dirname(__file__))[0]
         self.GameObject = []
+        self.Tags = []
 
     def Settings(self, Input : tuple):
         self.Input = Input

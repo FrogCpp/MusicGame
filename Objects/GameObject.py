@@ -23,7 +23,8 @@ class Agobject(S_MonoBehaviour):
         self.scale['y'] = 2
         self.scale['z'] = (self.scale['x'] + self.scale['y']) / 2
         self.AnimU()
-        self.layer = 1
+        self.layer = 5
+        self.Tags.append('MainHero')
 
     def Update(self):
         if self.GameObject[-1].Time['Index'] == 1:

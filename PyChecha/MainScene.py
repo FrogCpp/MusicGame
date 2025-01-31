@@ -29,3 +29,9 @@ class MainScene(list):
         for i in self:
             i.Settings(self.Input)
             i.Update()
+
+    def __repr__(self):
+        return ' '.join(map(lambda x: f'{x} : {x.layer};\n', self))
+
+    def __str__(self):
+        return ' '.join(map(lambda x: f'{x} : {x.layer};\n', self))
