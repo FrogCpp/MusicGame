@@ -1,12 +1,41 @@
 import librosa
+import vlc
 
 
-y, sr = librosa.load("/Users/spas6j9r/Library/Application Support/Steam/steamapps/music/Dying Light Original Soundtrack/Dying Light Original Soundtrack/02. Horizon.mp3")
-tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
-beat_times = librosa.frames_to_time(beat_frames, sr=sr)
-print(tempo)
-print(beat_times, end='\n\n\n\n')
-print(type(beat_frames))
-# tempo — удары в минуту
-# beat_times — таймкоды битов
+class MusicAnalyser:
+	def __init__(self, music_file_name: str):
+		self.music_file_name = music_file_name
 
+	def start_music_analyse(self, accuracy: int, st_time, wk_time):
+		"""accuracy — int value that means value of ms during which player can hit in the beat
+			Example: player needs to hit 24000ms±accuracy timecode"""
+
+		y, sr = librosa.load(self.music_file_name)
+		tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+		beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+		bt_ms = [round(el, 3) * 1000 for el in beat_times]
+		strong = [int(el) for el in bt_ms[::3]]
+		weak = [int(bt_ms[i]) for i in range(len(bt_ms)) if bt_ms[i] not in bt_ms[::3]]
+		# bt = list(beat_times)
+		# print(beat_times[:5])
+		p = vlc.MediaPlayer(self.music_file_name)
+		# print(strong)
+		# print(weak)
+		p.play()
+		while p.get_state() != "Ended":
+			cur_time = p.get_time()
+			for i in range(len(strong)):
+				if cur_time in list(range(strong[i] - accuracy, strong[i] + accuracy)):
+					st_time = True
+					wk_time = True
+					del strong[i]
+					break
+			for i in range(len(weak)):
+				if cur_time in list(range(weak[i] - accuracy, weak[i] + accuracy)):
+					st_time = False
+					wk_time = True
+					del weak[i]
+					break
+			print(f"time: {cur_time}, st: {st_time}")
+			print(f"time: {cur_time}, wk: {wk_time}")
+		p.stop()
