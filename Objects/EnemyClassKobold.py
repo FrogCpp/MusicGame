@@ -29,41 +29,40 @@ class EnemyClass(S_MonoBehaviour):
         if self.GameObject[-1].Time['Index'] == 1:
             self.feel['anim'] = 'Idle'
             self.AnimU()
-            for i in self.Input:
-                Hero = None
-                for j in self.GameObject:
-                    if 'MainHero' in j.Tags:
-                        Hero = j
-                        break
+            Hero = None
+            for j in self.GameObject:
+                if 'MainHero' in j.Tags:
+                    Hero = j
+                    break
 
-                Hero = Hero if random.randint(0, 10) > 7 else None
+            Hero = Hero if random.randint(0, 10) > 7 else None
 
-                if Hero is not None:
-                    x = Hero.transform['x']
-                    y = Hero.transform['y']
-                    if self.transform['x'] - x < 0 < x < 437.5:
-                        x_t = x - self.WalkSpeed
-                    elif self.transform['x'] - x > 0 < x < 437.5:
-                        x_t = x + self.WalkSpeed
-                    elif x == 0:
-                        x_t = x + self.WalkSpeed
+            if Hero is not None:
+                x = Hero.transform['x']
+                y = Hero.transform['y']
+                if self.transform['x'] - x < 0 < x < 437.5:
+                    x_t = x - self.WalkSpeed
+                elif self.transform['x'] - x > 0 < x < 437.5:
+                    x_t = x + self.WalkSpeed
+                elif x == 0:
+                    x_t = x + self.WalkSpeed
+                else:
+                    x_t = x - self.WalkSpeed
+                y_t = y
+                if self.transform['x'] == x_t and self.transform['y'] == y_t:
+                    if self.transform['x'] - x < 0:
+                        self.feel['frame'] = 0
+                        self.feel['anim'] = 'AttackRight'
+                        self.AnimU()
+                    if self.transform['x'] - x > 0:
+                        self.feel['frame'] = 0
+                        self.feel['anim'] = 'AttackLeft'
+                        self.AnimU()
+                else:
+                    if abs(self.transform['x'] - x_t) > abs(self.transform['y'] - y_t):
+                        self.transform['x'] += self.WalkSpeed * (-1 if self.transform['x'] - x_t > 0 else 1)
                     else:
-                        x_t = x - self.WalkSpeed
-                    y_t = y
-                    if self.transform['x'] == x_t and self.transform['y'] == y_t:
-                        if self.transform['x'] - x < 0:
-                            self.feel['frame'] = 0
-                            self.feel['anim'] = 'AttackRight'
-                            self.AnimU()
-                        if self.transform['x'] - x > 0:
-                            self.feel['frame'] = 0
-                            self.feel['anim'] = 'AttackLeft'
-                            self.AnimU()
-                    else:
-                        if abs(self.transform['x'] - x_t) > abs(self.transform['y'] - y_t):
-                            self.transform['x'] += self.WalkSpeed * (-1 if self.transform['x'] - x_t > 0 else 1)
-                        else:
-                            self.transform['y'] += self.WalkSpeed * (-1 if self.transform['y'] - y_t > 0 else 1)
+                        self.transform['y'] += self.WalkSpeed * (-1 if self.transform['y'] - y_t > 0 else 1)
 
 
         if self.feel['anim'] != 'Idle' and self.feel['frame'] == self.anims[self.feel['anim']][0] - 1:
