@@ -11,14 +11,15 @@ class MainScene(list):
             self.Input = {x:0 for x in Input}
             b = os.path.join(self.Way, 'Objects')
             for i in os.listdir(b):
-                if i[:2] != '__' and i[:3] != 'S_':
+                if i[:2] != '__' and i[:3] != 'S_' and i[-1] == 'y':
                     a = pydoc.importfile(os.path.join(b, i))
                     c = inspect.getmembers(a, inspect.isclass)
                     self.append(c[0][1]())
-                    self[-1].Start()
             self.sort(key=lambda x: x.layer)
             for i in self:
                 i.GameObject = self.copy()
+            for i in self:
+                i.Start()
         except Exception as e:
             a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'a')
             a.write(f'\n {e}')

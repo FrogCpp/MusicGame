@@ -9,6 +9,7 @@ class Agobject(S_MonoBehaviour):
         self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame\\Assets\\FreePack\\RookWhite.png'))
         self.WalkSpeed = 62.5
         self.Timer=0
+        self.layer = 5
         self.anims = {'Idle': (10, 'MusicGame\\Assets\\GG_Anim\\IDLE.png', 0.5, True),
                     'Run': (8, 'MusicGame\\Assets\\GG_Anim\\RUN.png', 1, False),
                     'AttackRight': (7, 'MusicGame\\Assets\\GG_Anim\\AttackRight.png', 0.5, False),
@@ -23,11 +24,10 @@ class Agobject(S_MonoBehaviour):
         self.scale['y'] = 2
         self.scale['z'] = (self.scale['x'] + self.scale['y']) / 2
         self.AnimU()
-        self.layer = 5
         self.Tags.append('MainHero')
 
     def Update(self):
-        if self.GameObject[-1].Time['Index'] == 1:
+        if self.GameObject[-1].ivents['strong share']:
             self.feel['anim'] = 'Idle'
             self.AnimU()
             for i in self.Input:
@@ -43,6 +43,17 @@ class Agobject(S_MonoBehaviour):
                     self.feel['frame'] = 0
                     self.feel['anim'] = 'AttackLeft'
                     self.AnimU()
+                if self.Input[i]: break
+
+
+        if self.GameObject[-1].ivents['weak share']:
+            self.feel['anim'] = 'Idle'
+            self.AnimU()
+            for i in self.Input:
+                if i == 'a' and self.Input[i]: self.transform['x'] -= self.WalkSpeed if self.transform['x'] > 32.5 else 0
+                if i == 'd' and self.Input[i]: self.transform['x'] += self.WalkSpeed if self.transform['x'] < 437.5 else 0
+                if i == 'w' and self.Input[i]: self.transform['y'] -= self.WalkSpeed if self.transform['y'] > 0 else 0
+                if i == 's' and self.Input[i]: self.transform['y'] += self.WalkSpeed if self.transform['y'] < 390 else 0
                 if self.Input[i]: break
 
         if self.feel['anim'] != 'Idle' and self.feel['frame'] == self.anims[self.feel['anim']][0] - 1:

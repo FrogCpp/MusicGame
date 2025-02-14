@@ -6,10 +6,13 @@ from pygame import mixer
 class MusicAnalyser:
 	def __init__(self, music_file_name: str):
 		self.music_file_name = music_file_name
+        self.sk_time = False
+        self.wk_time = False
 
-	def start_music_analyse(self, accuracy: int, st_time, wk_time):
+	def start_music_analyse(self, accuracy: int):
 		"""accuracy — int value that means value of ms during which player can hit in the beat
 			Example: player needs to hit 24000ms±accuracy timecode"""
+
 
 		y, sr = librosa.load(self.music_file_name)
 		tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
@@ -29,23 +32,22 @@ class MusicAnalyser:
 			# cur_time = p.get_time()
 			# cur_time = mixer.music.get_pos()
 			cur_time = mixer.music.get_pos()
-			print(cur_time)
 
 			for i in range(len(strong)):
 				if cur_time in list(range(strong[i] - accuracy, strong[i] + accuracy)):
-					st_time = True
-					wk_time = True
+					self.st_time = True
+					self.wk_time = True
 					del strong[i]
 					break
 
 			for i in range(len(weak)):
 				if cur_time in list(range(weak[i] - accuracy, weak[i] + accuracy)):
-					st_time = False
-					wk_time = True
+					self.st_time = False
+					self.wk_time = True
 					del weak[i]
 					break
-			print(f"time: {cur_time}, st: {st_time}")
-			print(f"time: {cur_time}, wk: {wk_time}")
+			# print(f"time: {cur_time}, st: {st_time}")
+			# print(f"time: {cur_time}, wk: {wk_time}")
 		mixer.music.stop()
 
 
@@ -54,6 +56,5 @@ class MusicAnalyser:
 
 if __name__ == "__main__":
 	a = MusicAnalyser("Horizon.mp3")
-	b1, b2 = False, False
-	a.start_music_analyse(accuracy=500, st_time=b1, wk_time=b2)
+	a.start_music_analyse(accuracy=500)
 
