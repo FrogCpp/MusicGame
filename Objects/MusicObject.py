@@ -22,7 +22,7 @@ class MusicAnalyser(S_MonoBehaviour):
 
         print('Hello')
         self.music_file_name = fileName
-        y, sr = librosa.load(self.music_file_name)
+        y, sr = librosa.load(path=self.music_file_name)
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beat_times = librosa.frames_to_time(beat_frames, sr=sr)
         bt_ms = [round(el, 3) * 1000 for el in beat_times]
