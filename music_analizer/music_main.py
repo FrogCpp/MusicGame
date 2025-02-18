@@ -46,8 +46,8 @@ class MusicAnalyser:
 					self.wk_time = True
 					del weak[i]
 					break
-			# print(f"time: {cur_time}, st: {st_time}")
-			# print(f"time: {cur_time}, wk: {wk_time}")
+			print(f"time: {cur_time}, st: {self.st_time}")
+			print(f"time: {cur_time}, wk: {self.wk_time}")
 		mixer.music.stop()
 
 

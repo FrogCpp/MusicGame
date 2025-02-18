@@ -26,6 +26,8 @@ class EnemyClass(S_MonoBehaviour):
         self.AnimU()
 
     def Update(self):
+        if self.GameObject[-1].ivents['strong share']: print('a')
+        if self.GameObject[-1].ivents['weak share']: print('b')
         if self.GameObject[-1].ivents['strong share']:
             self.feel['anim'] = 'Idle'
             self.AnimU()
