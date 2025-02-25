@@ -23,7 +23,7 @@ class Indicator(S_MonoBehaviour):
 
         # self.Music = MusicAnalyser(music_file_name='HorizonMusic.mp3')
         self.Music = self.GameObject[0]
-        self.Music.start_music_analyse(accuracy=1, fileName='HorizonMusic.mp3')
+        self.Music.start_music_analyse(accuracy=1, fileName='vi-the-vigilante.mp3')
 
     def Update(self):
         self.ivents['strong share'] = self.Music.st_time
