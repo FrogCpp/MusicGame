@@ -1,8 +1,8 @@
-from PyChecha import MainScene # this is a main file! ! ! ! !
+from PyChecha import MainScene  # this is a main file! ! ! ! !
 import pygame
 import os
-a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'w')
-a.close()
+# a = open(f"{os.path.join(os.environ['USERPROFILE'], 'Desktop', 'stp.txt')}", 'w')
+# a.close()
 
 WIDTH = 500
 HEIGHT = 600

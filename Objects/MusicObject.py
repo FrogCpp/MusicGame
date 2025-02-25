@@ -1,5 +1,5 @@
 import librosa
-# from mutagen.mp3 import MP3
+from mutagen.mp3 import MP3
 from pygame import mixer
 
 from S_MonoBehaviour import S_MonoBehaviour
@@ -16,7 +16,7 @@ class MusicAnalyser(S_MonoBehaviour):
     def Start(self):
         pass
 
-    def start_music_analyse(self, accuracy: int, fileName : str):
+    def start_music_analyse(self, accuracy: int, fileName: str):
         """accuracy — int value that means value of ms during which player can hit in the beat
             Example: player needs to hit 24000ms±accuracy timecode"""
 

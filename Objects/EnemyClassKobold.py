@@ -7,14 +7,14 @@ import random
 class EnemyClass(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
-        self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame\\Assets\\FreePack\\RookWhite.png'))
+        self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame/Assets/FreePack/RookWhite.png'))
         self.WalkSpeed = 62.5
-        self.Timer=0
-        self.anims = {'Idle': (6, 'MusicGame\\Assets\\KoboldAnim\\Sprites\\without_outline\\IDLE.png', 0.5, True),
-                    'Run': (8, 'MusicGame\\Assets\\KoboldAnim\\Sprites\\without_outline\\Run.png', 1, False),
-                    'AttackRight': (5, 'MusicGame\\Assets\\KoboldAnim\\Sprites\\without_outline\\ATTACKright.png', 0.5, False),
-                    'AttackLeft': (5, 'MusicGame\\Assets\\KoboldAnim\\Sprites\\without_outline\\ATTACKleft.png', 0.5, False)}
-        self.feel = {'anim':'Idle', 'frame':0}
+        self.Timer = 0
+        self.anims = {'Idle': (6, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/IDLE.png', 0.5, True),
+                    'Run': (8, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/Run.png', 1, False),
+                    'AttackRight': (5, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/ATTACKright.png', 0.5, False),
+                    'AttackLeft': (5, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/ATTACKleft.png', 0.5, False)}
+        self.feel = {'anim': 'Idle', 'frame': 0}
         self.layer = 0
 
     def Start(self):

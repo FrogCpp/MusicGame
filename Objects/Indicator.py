@@ -3,12 +3,13 @@ import os
 import pygame
 import random
 
+
 class Indicator(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
         self.Texture = (96, 218, 12)
         self.Error = 10
-        self.ivents = {'strong share' : False, 'weak share' : False}
+        self.ivents = {'strong share': False, 'weak share': False}
         self.Music = None
         self.layer = 10
 
@@ -18,8 +19,11 @@ class Indicator(S_MonoBehaviour):
         self.scale['z'] = 1
         self.transform['x'] = 400
         self.transform['y'] = 560
+
+        # self.Music = MusicAnalyser(music_file_name='HorizonMusic.mp3')
+        print(self.GameObject)
         self.Music = self.GameObject[0]
-        self.Music.start_music_analyse(accuracy=1, fileName='vi-the-vigilante.mp3')
+        self.Music.start_music_analyse(accuracy=1, fileName='HorizonMusic.mp3')
 
     def Update(self):
         self.ivents['strong share'] = self.Music.st_time
