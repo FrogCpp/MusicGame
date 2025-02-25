@@ -11,7 +11,7 @@ class EnemyClass(S_MonoBehaviour):
         self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame/Assets/FreePack/RookWhite.png'))
         self.WalkSpeed = 62.5
         self.Timer = 0
-        self.anims = {'Idle': (6, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/IDLE.png', 0.5, True),
+        self.anims = {'Idle': (6, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/IDLE.png', 0.25, True),
                     'Run': (8, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/Run.png', 1, False),
                     'AttackRight': (5, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/ATTACKright.png', 0.5, False),
                     'AttackLeft': (5, 'MusicGame/Assets/KoboldAnim/Sprites/without_outline/ATTACKleft.png', 0.5, False)}
@@ -27,9 +27,7 @@ class EnemyClass(S_MonoBehaviour):
         self.AnimU()
 
     def Update(self):
-        if self.GameObject[-1].ivents['strong share']: print('a')
-        if self.GameObject[-1].ivents['weak share']: print('b')
-        if self.GameObject[-1].ivents['strong share']:
+        if self.GameObject[-1].ivents['strong share'] and (self.feel['frame'] == self.anims[self.feel['anim']] if self.feel['anim'] == 'AttackRight' or self.feel['anim'] == 'AttackLeft' else True):
             self.feel['anim'] = 'Idle'
             self.AnimU()
             Hero = None
@@ -67,7 +65,7 @@ class EnemyClass(S_MonoBehaviour):
                     else:
                         self.transform['y'] += self.WalkSpeed * (-1 if self.transform['y'] - y_t > 0 else 1)
 
-        if self.GameObject[-1].ivents['weak share']:
+        if self.GameObject[-1].ivents['weak share'] and (self.feel['frame'] == self.anims[self.feel['anim']] if self.feel['anim'] == 'AttackRight' or self.feel['anim'] == 'AttackLeft' else True):
             self.feel['anim'] = 'Idle'
             self.AnimU()
             Hero = None

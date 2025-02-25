@@ -28,7 +28,7 @@ class Agobject(S_MonoBehaviour):
         self.Tags.append('MainHero')
 
     def Update(self):
-        if self.GameObject[-1].ivents['strong share']:
+        if self.GameObject[-1].ivents['strong share'] and (self.feel['frame'] == self.anims[self.feel['anim']] if self.feel['anim'] == 'AttackRight' or self.feel['anim'] == 'AttackLeft' else True):
             self.feel['anim'] = 'Idle'
             self.AnimU()
             for i in self.Input:
@@ -51,7 +51,7 @@ class Agobject(S_MonoBehaviour):
                 if self.Input[i]:
                     break
 
-        if self.GameObject[-1].ivents['weak share']:
+        if self.GameObject[-1].ivents['weak share'] and (self.feel['frame'] == self.anims[self.feel['anim']] if self.feel['anim'] == 'AttackRight' or self.feel['anim'] == 'AttackLeft' else True):
             self.feel['anim'] = 'Idle'
             self.AnimU()
             for i in self.Input:
