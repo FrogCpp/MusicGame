@@ -26,5 +26,6 @@ class Indicator(S_MonoBehaviour):
         self.Music.start_music_analyse(accuracy=1, fileName='HorizonMusic.mp3')
 
     def Update(self):
-        self.ivents['strong share'] = self.Music.st_time
-        self.ivents['weak share'] = self.Music.wk_time
+        # self.ivents['strong share'] = self.Music.st_time
+        # self.ivents['weak share'] = self.Music.wk_time
+        pass
