@@ -20,9 +20,9 @@ class MusicAnalyser(S_MonoBehaviour):
         """accuracy — int value that means value of ms during which player can hit in the beat
             Example: player needs to hit 24000ms±accuracy timecode"""
 
-        print('Hello')
+        print('hui')
         self.music_file_name = fileName
-        y, sr = librosa.load(path=self.music_file_name)
+        y, sr = librosa.load(librosa.ex(self.music_file_name))
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beat_times = librosa.frames_to_time(beat_frames, sr=sr)
         bt_ms = [round(el, 3) * 1000 for el in beat_times]
