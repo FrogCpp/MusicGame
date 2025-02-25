@@ -19,7 +19,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("My Game")
 clock = pygame.time.Clock()
 MyScene = MainScene(pygame.key.name(pygame.K_w), pygame.key.name(pygame.K_a), pygame.key.name(pygame.K_s), pygame.key.name(pygame.K_d), 1, 3)
-# print(MyScene)
+print(MyScene)
 running = True
 while running:
     screen.fill(BLACK)

@@ -6,6 +6,7 @@ import pygame
 class HBar(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
+        self.iGO = True
         self.Texture = (191, 191, 191)
         self.layer = 1
 

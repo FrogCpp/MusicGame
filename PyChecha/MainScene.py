@@ -14,7 +14,15 @@ class MainScene(list):
                 if i[:2] != '__' and i[:3] != 'S_' and i[-1] == 'y':
                     a = pydoc.importfile(os.path.join(b, i))
                     c = inspect.getmembers(a, inspect.isclass)
-                    self.append(c[0][1]())
+                    aboba = None
+                    for aba in c:
+                        es = aba[1]()
+                        try:
+                            if es.iGO:
+                                aboba = es
+                                break
+                        except: pass
+                    self.append(aboba)
             self.sort(key=lambda x: x.layer)
             for i in self:
                 i.GameObject = self.copy()

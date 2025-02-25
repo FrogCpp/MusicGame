@@ -6,6 +6,7 @@ import pygame
 class Agobject(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
+        self.iGO = True
         self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame/Assets/FreePack/RookWhite.png'))
         self.WalkSpeed = 62.5
         self.Timer = 0
@@ -27,7 +28,6 @@ class Agobject(S_MonoBehaviour):
         self.Tags.append('MainHero')
 
     def Update(self):
-        print(self.GameObject)
         if self.GameObject[-1].ivents['strong share']:
             self.feel['anim'] = 'Idle'
             self.AnimU()

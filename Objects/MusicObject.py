@@ -8,6 +8,7 @@ from S_MonoBehaviour import S_MonoBehaviour
 class MusicAnalyser(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
+        self.iGO = True
         self.music_file_name = None
         self.st_time = False
         self.wk_time = False

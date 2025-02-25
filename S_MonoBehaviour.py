@@ -6,6 +6,7 @@ from pygame.transform import scale
 
 class S_MonoBehaviour:
     def __init__(self, coords=[0, 0], scale=[10, 10], color=(255, 255, 255), isTexture=False, Texture=''):
+        self.iGO = False
         self.layer = 0
         self.transform = {'x':coords[0], 'y':coords[1]}
         self.scale = {'x':coords[0], 'y':coords[1], 'z':1}

@@ -6,6 +6,7 @@ import pygame
 class Agobject(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
+        self.iGO = True
         self.Texture = pygame.image.load(os.path.join(self.Way, 'MusicGame/Assets/FreePack/Board.png'))
         self.layer = -1
 

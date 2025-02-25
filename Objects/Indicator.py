@@ -7,6 +7,7 @@ import random
 class Indicator(S_MonoBehaviour):
     def __init__(self):
         super().__init__()
+        self.iGO = True
         self.Texture = (96, 218, 12)
         self.Error = 10
         self.ivents = {'strong share': False, 'weak share': False}
@@ -21,11 +22,9 @@ class Indicator(S_MonoBehaviour):
         self.transform['y'] = 560
 
         # self.Music = MusicAnalyser(music_file_name='HorizonMusic.mp3')
-        print(self.GameObject)
         self.Music = self.GameObject[0]
         self.Music.start_music_analyse(accuracy=1, fileName='HorizonMusic.mp3')
 
     def Update(self):
-        # self.ivents['strong share'] = self.Music.st_time
-        # self.ivents['weak share'] = self.Music.wk_time
-        pass
+        self.ivents['strong share'] = self.Music.st_time
+        self.ivents['weak share'] = self.Music.wk_time
