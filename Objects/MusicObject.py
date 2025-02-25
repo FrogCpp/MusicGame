@@ -21,20 +21,22 @@ class MusicAnalyser(S_MonoBehaviour):
         """accuracy — int value that means value of ms during which player can hit in the beat
             Example: player needs to hit 24000ms±accuracy timecode"""
 
-        print('hui')
+        print('tennis')
         self.music_file_name = fileName
-        y, sr = librosa.load(librosa.ex(self.music_file_name))
+        y, sr = librosa.load(path="/Users/spas6j9r/Desktop/MusicGame/Objects/Horizon.mp3")
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beat_times = librosa.frames_to_time(beat_frames, sr=sr)
         bt_ms = [round(el, 3) * 1000 for el in beat_times]
         strong = [int(el) for el in bt_ms[::3]]
         weak = [int(bt_ms[i]) for i in range(len(bt_ms)) if bt_ms[i] not in bt_ms[::3]]
 
-        audio = MP3(self.music_file_name)
+        # audio = MP3(self.music_file_name)
+        audio = MP3("/Users/spas6j9r/Desktop/MusicGame/Objects/Horizon.mp3")
         dur = round(audio.info.length * 1000)
 
         mixer.init()
-        mixer.music.load(self.music_file_name)
+        # mixer.music.load(self.music_file_name)
+        mixer.music.load("/Users/spas6j9r/Desktop/MusicGame/Objects/Horizon.mp3")
 
         mixer.music.play()
         while mixer.music.get_pos() <= dur:
