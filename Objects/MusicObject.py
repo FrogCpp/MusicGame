@@ -26,18 +26,18 @@ class MusicAnalyser(S_MonoBehaviour):
     def start_music_analyse(self, accuracy: int, fileName: str):
         self.accuracy = accuracy
         self.music_file_name = fileName
-        y, sr = librosa.load(path="C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        y, sr = librosa.load(path="C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\vi-the-vigilante.mp3")
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beat_times = librosa.frames_to_time(beat_frames, sr=sr)
         bt_ms = [round(el, 3) * 1000 for el in beat_times]
         self.strong = [int(el) for el in bt_ms[::3]]
         self.weak = [int(bt_ms[i]) for i in range(len(bt_ms)) if bt_ms[i] not in bt_ms[::3]]
 
-        audio = MP3("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        audio = MP3("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\vi-the-vigilante.mp3")
         self.dur = round(audio.info.length * 1000)
 
         mixer.init()
-        mixer.music.load("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        mixer.music.load("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\vi-the-vigilante.mp3")
 
 
         self.aboba = True
@@ -46,7 +46,7 @@ class MusicAnalyser(S_MonoBehaviour):
         #
         # print('tennis')
         # self.music_file_name = fileName
-        # y, sr = librosa.load(path="C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        # y, sr = librosa.load(path="C:\Users\present\Documents\GitHub\MusicGame\Objects\vi-the-vigilante.mp3")
         # tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         # beat_times = librosa.frames_to_time(beat_frames, sr=sr)
         # bt_ms = [round(el, 3) * 1000 for el in beat_times]
@@ -54,12 +54,12 @@ class MusicAnalyser(S_MonoBehaviour):
         # weak = [int(bt_ms[i]) for i in range(len(bt_ms)) if bt_ms[i] not in bt_ms[::3]]
         #
         # # audio = MP3(self.music_file_name)
-        # audio = MP3("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        # audio = MP3("C:\Users\present\Documents\GitHub\MusicGame\Objects\vi-the-vigilante.mp3")
         # dur = round(audio.info.length * 1000)
         #
         # mixer.init()
         # # mixer.music.load(self.music_file_name)
-        # mixer.music.load("C:\\Users\\present\\Documents\\GitHub\\MusicGame\\Objects\\Horizon.mp3")
+        # mixer.music.load("C:\Users\present\Documents\GitHub\MusicGame\Objects\vi-the-vigilante.mp3")
         #
         # mixer.music.play()
         # self.aboba = True
@@ -93,10 +93,10 @@ class MusicAnalyser(S_MonoBehaviour):
             self.flag = False
 
         if self.aboba:
-            print(self.dur)
-            print('tennis')
+            # print(self.dur)
+            # print('tennis')
             cur_time = mixer.music.get_pos()
-            print(cur_time)
+            # print(cur_time)
 
             for i in range(len(self.strong)):
                 if cur_time in list(range(self.strong[i] - self.accuracy, self.strong[i] + self.accuracy)):
@@ -111,7 +111,7 @@ class MusicAnalyser(S_MonoBehaviour):
                     self.wk_time = True
                     del self.weak[i]
                     break
-            print(f"time: {cur_time}, st: {self.st_time}")
-            print(f"time: {cur_time}, wk: {self.wk_time}")
+            # print(f"time: {cur_time}, st: {self.st_time}")
+            # print(f"time: {cur_time}, wk: {self.wk_time}")
             if not mixer.music.get_pos() <= self.dur: self.aboba = False
         if not self.aboba: mixer.music.stop()
